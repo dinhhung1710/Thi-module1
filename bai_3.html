@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Nhập tháng và năm (MM/YY)</h2>
+<input type="text" id="monthYear" placeholder="">
+<button onclick="calculateDays()">Tính số ngày</button>
+
+<p id="result"></p>
+<p id="leapYearInfo"></p>
+
+<script>
+    function calculateDays() {
+        var input = document.getElementById("monthYear").value;
+        var resultElement = document.getElementById("result");
+        var leapYearInfo = document.getElementById("leapYearInfo");
+        var month = parseInt(input.substr(0, 2), 10);
+        var year = parseInt("20" + input.substr(3, 2), 10);
+        if (month < 1 || month > 12) {
+            resultElement.textContent = "Tháng phải từ 01 đến 12.";
+            return;
+        }
+        var isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        var daysInMonth;
+
+        if (month === 2) {
+            daysInMonth = isLeap ? 29 : 28;
+        } else if ([4, 6, 9, 11].includes(month)) {
+            daysInMonth = 30;
+        } else {
+            daysInMonth = 31;
+        }
+
+        resultElement.textContent = "Tháng " + month + "/" + (year % 100) + " có " + daysInMonth + " ngày.";
+        leapYearInfo.textContent = isLeap ? "Năm " + year + " là năm nhuận." : "Năm " + year + " không phải là năm nhuận.";
+    }
+</script>
+
+</body>
+</html>

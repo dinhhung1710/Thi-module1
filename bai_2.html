@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function isPerfectNumber(num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        let sum = 0;
+        for (let i = 1; i <= num / 2; i++) {
+            if (num % i === 0) {
+                sum += i;
+            }
+        }
+        return sum === num;
+    }
+    function checkPerfectNumber() {
+        let num = parseInt(prompt("Nhập vào một số nguyên dương"));
+        if (isNaN(num) || num <= 0) {
+            alert("Vui lòng nhập một số nguyên dương hợp lệ.");
+            return;
+        }
+
+        if (isPerfectNumber(num)) {
+            alert(num + " là số hoàn hảo.");
+        } else {
+            alert(num + " không phải là số hoàn hảo.");
+        }
+    }
+
+    checkPerfectNumber();
+
+</script>
+</body>
+</html>
